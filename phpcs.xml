@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Standard" namespace="coding-convention\">
+
+ <description>A custom coding standard</description>
+
+ <config name="zend_ca_path" value="/path/to/ZendCodeAnalyzer"/>
+ 
+ <file>./app</file>
+ <!-- <file>./public/js</file>
+ <file>./public/css</file> -->
+
+ <!-- <exclude-pattern>*/tests/*</exclude-pattern>
+ <exclude-pattern>*/data/*</exclude-pattern> -->
+
+ <!-- <exclude-pattern type="relative">^/tests/*</exclude-pattern>
+ <exclude-pattern type="relative">^/data/*</exclude-pattern> -->
+
+ <!-- <arg name="extensions" value="php,inc" />
+ <arg name="report" value="summary"/>
+ <arg name="colors"/>
+ <arg value="sp"/> -->
+
+ <!-- <ini name="memory_limit" value="64M"/> -->
+
+ <!-- <autoload>./app/helper.php</autoload> -->
+
+ <rule ref="PSR2"/>
+
+<!-- path to custom standard -->
+ <!-- <rule ref="/home/username/standards/mystandard"/> -->
+
+ <!-- <rule ref="Squiz">
+  <exclude name="Squiz.PHP.CommentedOutCode"/>
+ </rule> -->
+
+ <rule ref="Generic.Files.LineLength">
+  <properties>
+   <property name="lineLimit" value="120"/>
+   <property name="absoluteLineLimit" value="120"/>
+  </properties>
+ </rule>
+
+ <!--
+    Another useful example of changing sniff settings is
+    to specify the end of line character that your standard
+    should check for.
+ -->
+ <rule ref="Generic.Files.LineEndings">
+  <properties>
+   <property name="eolChar" value="\n"/>
+  </properties>
+ </rule>
+
+ <!--
+    Boolean values should be specified by using the strings
+    "true" and "false" rather than the integers 0 and 1.
+ -->
+ <rule ref="Generic.Formatting.MultipleStatementAlignment">
+  <properties>
+   <property name="maxPadding" value="8"/>
+   <property name="ignoreMultiLine" value="true"/>
+  </properties>
+ </rule>
+ 
+<!--
+    Array values are specified by using "element" tags
+    with "key" and "value" attributes.
+
+    NOTE: This syntax is is only supported in PHP_CodeSniffer
+    versions 3.3.0 and greater.
+ -->
+ <rule ref="Generic.PHP.ForbiddenFunctions">
+  <properties>
+   <property name="forbiddenFunctions" type="array">
+    <element key="delete" value="unset"/>
+    <element key="print" value="echo"/>
+    <element key="create_function" value="null"/>
+   </property>
+  </properties>
+ </rule>
+
+ <!--
+    Before version 3.3.0, array values are specified by using a string
+    representation of the array.
+
+    NOTE: This syntax is deprecated and will be removed in
+    PHP_CodeSniffer version 4.0
+ -->
+ <rule ref="Generic.PHP.ForbiddenFunctions">
+  <properties>
+   <property name="forbiddenFunctions" type="array" value="delete=>unset,print=>echo,create_function=>null" />
+  </properties>
+ </rule>
+
+ <!--
+    If you want to completely disable an error message in a sniff
+    but you don't want to exclude the whole sniff, you can
+    change the severity of the message to 0. In this case, we
+    want the Squiz DoubleQuoteUsage sniff to be included in our
+    standard, but we don't want the ContainsVar error message to
+    ever be displayed.
+ -->
+ <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+  <severity>0</severity>
+ </rule>
+
+ <!-- <rule ref="Internal.NoCodeFound">
+  <severity>0</severity>
+ </rule> -->
+
+</ruleset>
